@@ -19,54 +19,27 @@
 // }
 
 // Part 3 
-const csvData = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26`;
-// if(char == '\n');
+let csvData = `ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26`;
+// csvData = `Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232`
+
 // Loop through the characters of a given CSV string.
 // Store each “cell” of data in a variable.
 // When you encounter a comma, move to the next cell.
 // When you encounter the “\r\n” sequence, move to the next “row.”
 // Log each row of data.
-let row = "";
 let cell = "";
-let cell1 = "";
-let cell2 = "";
-let cell3 = "";
-let cell4 = "";
-let cur = 1;
-for (let i = 0; i < csvData.length; i++) {
-   if (csvData[i] != ',') {
-      if (cur == 1) {
-         cell1 += cell;
-         cur++;
+let row = "";
 
-      }
-      else if (cur == 2) {
-         cell2 += cell;
-         cur++;
-      }
-      else if (cur == 3) {
-         cell3 += cell;
-         cur++;
-      }
-      else if (cur == 4) {
-         cell4 += cell;
-         cur++;
-      }
-
-      else if (csvData[i] == "\n" && cur > 4) {
-         row = cell1, cell2, cell3, cell4;
-         console.log(row)
-         cell1 = "";
-         cell2 = "";
-         cell3 = "";
-         cell4 = "";
-         cur = 1;
-      }
-   } else {
-      cell += csvData[i];
+for (let i of csvData) {
+   cell += i;
+   if (i == ','){
+      row += cell;
+      cell = "";
    }
-
+   else if (i == '\n'){
+      console.log(row);
+      row = "";
+   }
 }
-
 
 
